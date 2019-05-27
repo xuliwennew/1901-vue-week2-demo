@@ -1,4 +1,5 @@
 const path = require("path")
+const {} = require("vue-loader")
 
 
 module.exports = {
@@ -10,12 +11,19 @@ module.exports = {
         filename: "app.bundle.js",
         path:path.resolve(__dirname,"hello/")
     },
+    resolve: {
+        extensions: [".css",".js",".vue"]
+    },
     module: {
         rules: [
             {
                 test:/\.css$/,
                 exclude:/node_modules/, //fs pipe
                 loader:"style-loader!css-loader"
+            },
+            {
+                test:/\.vue$/,
+                loader:"vue-loader"
             }
         ]
     }
