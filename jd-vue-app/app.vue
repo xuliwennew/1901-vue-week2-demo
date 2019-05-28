@@ -1,12 +1,10 @@
 <template>
-   <div>
-      <h1>app component</h1>
-   </div>
+
 </template>
 
 <script>
     export default {
-        name:"app"
+        name: "app"
     }
 </script>
 

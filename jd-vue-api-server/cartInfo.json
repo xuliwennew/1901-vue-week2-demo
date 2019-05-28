@@ -1,0 +1,47 @@
+{
+  "user":{
+    "no":1
+  },
+  "shops":[
+    {
+      "checked":true,
+      "degree":1,
+      "shopName":"华为店铺",
+      "totalPrice":0,
+      "products":[
+        {
+          "checked":true,
+          "title":"华为 HUAWEI P30 超感光徕卡三摄麒麟980AI智能芯片全面屏屏内指纹版手机8GB+128GB天空之境全网通双4G手机",
+          "price":3000,
+          "num":1,
+          "attrs":{
+            "weight":100,
+            "color":"black",
+            "version":"1.0"
+          },
+          "pic":"https://m.360buyimg.com/babel/s333x333_jfs/t1/23126/19/13168/517409/5c9c65ecE1ece7d3e/a9a140f21b283d4d.png"
+        }
+      ]
+    },
+    {
+      "checked":true,
+      "degree":1,
+      "shopName":"京东自营店铺",
+      "totalPrice":0,
+      "products":[
+        {
+          "checked":true,
+          "title":"Champion冠军 男装 纯棉彩色刺绣草写LOGO短袖T恤 男女同款 C3-H371-03 白色 M",
+          "price":1,
+          "num":1,
+          "attrs":{
+            "weight":100,
+            "color":"black",
+            "version":"1.0"
+          },
+          "pic":"https://m.360buyimg.com/babel/s333x333_jfs/t1/34452/4/8675/227146/5ccd2231Eb49170a3/256aa37418e1be50.png"
+        }
+      ]
+    }
+  ]
+}
