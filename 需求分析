@@ -21,7 +21,7 @@ express
 3、详细设计 (算法)
 
    架构设计 ：选择框架   vue = mvvm + component
-              后台的模拟 mongodb + express + node
+            后台的模拟 mongodb + express + node
 
    组件设计 ： props
 
@@ -65,6 +65,40 @@ express
 4、编写代码
 
  组件：
- 智能组件 pages data lifecircle 木偶组件 components props
+ 智能组件 pages data lifecircle
+ 木偶组件 components props
 
  one-way dataflow  page
+
+ 组件的规则
+ 1. named component
+ pascal / cemaral case  kebab-case
+
+ 2.项目名称+页面名称+功能名称
+   jd + carts + header
+   v-on
+
+
+   jh-cart   购物车
+
+   jh-cart-header cartHeader
+
+   jh-cart-footer cartFooter
+
+   jh-cart-shop-list cartShopList
+
+   jh-cart-shop cartShop
+
+   jh-cart-shop-product-list cartShopProductList
+
+   jh-cart-shop-product cartShopProduct
+
+ 动态的组件设计
+   1.组件的输入和输出接口
+   props 设计
+   emit  设计
+
+   data: 输入数据
+
+   2.组件的状态管理
+   3.组件的生命周期管理
