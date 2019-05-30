@@ -6,7 +6,12 @@
  *  3, 使用vuex创建一个store
  *  4, state,mutaions,actions getter
  *  5, store 注册到viewmodel
- *
+ *  store 管理公共状态的地方
+ state (rice,....) 公共状态属性
+ mutations (rice + eggs - > eggsrice)  更改状态返回新的状态
+ actions (接收组件的发送过来的请求)
+ getters 获取最新的状态
+ modules: 划分stata管理
  */
 
 import Vue from "vue"
