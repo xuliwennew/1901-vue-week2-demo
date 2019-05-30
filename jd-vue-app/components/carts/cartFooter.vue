@@ -1,7 +1,7 @@
 <template>
     <div class="payment-bar">
         <div class="all-checkbox">
-            <input type="checkbox" v-model="data.checked" class="check goods-check">全选
+            <input @change="checkAll" type="checkbox" v-model="data.checked" class="check goods-check">全选
         </div>
         <div class="shop-total">
             <strong>总价：<i id="AllTotal" class="total">{{data|counter}}</i></strong>
@@ -27,6 +27,11 @@
                     })
                 }
                 return total
+            }
+        },
+        methods:{
+            checkAll(){
+                this.$emit("checkAll")
             }
         }
     }

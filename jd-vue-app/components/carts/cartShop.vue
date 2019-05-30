@@ -7,9 +7,9 @@
             <span>领券</span><em>|</em><span>编辑</span>
          </div>
       </div>
-      <jh-cart-shop-product-list @pCheck="singleCheck" :data="data.products" :sid="sid"></jh-cart-shop-product-list>
+      <jh-cart-shop-product-list @del="del" @minus="minusNum" @add="addNum" @pCheck="singleCheck" :data="data.products" :sid="sid"></jh-cart-shop-product-list>
 
-      <div class="shopPrice">本店总计：￥<span class="shop-total-amount ShopTotal">0</span>
+      <div class="shopPrice">本店总计：￥<span class="shop-total-amount ShopTotal">{{data.products | counter}}</span>
       </div>
    </div>
 
@@ -29,6 +29,25 @@
             },
             singleCheck(sid,pid){
                 this.$emit("pCheck",sid,pid)
+            },
+            addNum(sid,pid){
+                this.$emit("add",sid,pid)
+            },
+            minusNum(sid,pid){
+                this.$emit("minus",sid,pid)
+            },
+            del(sid,pid){
+                this.$emit("del",sid,pid)
+            }
+        },
+        filters:{
+            counter(products){
+                let total = 0;
+                products.forEach((product,index)=>{
+                    total += product.price * product.num
+                })
+
+                return total
             }
         }
     }

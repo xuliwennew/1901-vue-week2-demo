@@ -1,8 +1,8 @@
 <template>
    <div>
        <jh-cart-header></jh-cart-header>
-       <jh-cart-shop-list @pCheck="singleCheck" @sCheck="shopCheckAll" :data="cartInfo"></jh-cart-shop-list>
-       <jh-cart-footer :data="cartInfo"></jh-cart-footer>
+       <jh-cart-shop-list @del="del" @add="addNum" @minus="minusNum" @pCheck="singleCheck" @sCheck="shopCheckAll" :data="cartInfo"></jh-cart-shop-list>
+       <jh-cart-footer @checkAll="cartCheckAll" :data="cartInfo"></jh-cart-footer>
    </div>
 </template>
 
@@ -24,9 +24,9 @@
         methods:{
             _initPageData(){
                cartApi.getCartByUserId(data=>{
-                   console.log(data)
-                   this.cartInfo = data;
-               })
+                    console.log(data)
+                    this.cartInfo = data;
+                })
             },
             shopCheckAll(sid){
                let isChecked = this.cartInfo.shops[sid].checked;
@@ -42,12 +42,45 @@
 
                 this.cartInfo.shops[sid].checked = isChecked
                 this.cartInfo.checked = isChecked
+            },
+            addNum(sid,pid){
+                console.log("add",sid,pid)
+                this.cartInfo.shops[sid].products[pid].num++
+            },
+            minusNum(sid,pid){
+                console.log("minus",sid,pid)
+                if(  this.cartInfo.shops[sid].products[pid].num <=1){
+                    this.cartInfo.shops[sid].products[pid].num = 1
+                }else {
+                    this.cartInfo.shops[sid].products[pid].num--
+                }
+
+            },
+            cartCheckAll(){
+                let isChecked = this.cartInfo.checked;
+                this.cartInfo.shops.forEach((shop,sid)=>{
+                    shop.checked=isChecked
+                    shop.products.forEach((product,pid)=>{
+                        product.checked = isChecked
+                    })
+                })
+            },
+            del(sid,pid){
+                this.cartInfo.shops[sid].products.splice(pid,1)
             }
         },
         data(){
             return {
                 //observer
                 cartInfo:{}
+            }
+        },
+        watch:{
+            cartInfo:{
+                handler:function (nObj,oObj) {
+                   console.log("watch cartinfo change....")
+                },
+                deep:true
             }
         }
     }
