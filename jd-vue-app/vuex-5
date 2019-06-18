@@ -1,0 +1,20 @@
+
+
+
+1, npm install vuex -S
+2, Vue.use(Vuex)
+3, 创建一个store模块，定义状态管理的规则
+state : 状态 共享的状态
+mutations : 更改状态，只负责更改状态
+actions： 接收组件的事件(dispath),通过异步获取数据，提交给mutaions commit
+getters,  获取最新的状态
+module : 分模块进行状态的管理
+
+4, 把store模块注册到viewmodel
+5, this.$store 来访问这个store
+   mapGetters 把store中的getters方法
+映射到组件中的computed属性上
+   mapActions
+   mapMutations
+   mapState
+   dispatch("事件名")

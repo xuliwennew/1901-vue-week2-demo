@@ -1,12 +1,13 @@
 <template>
-   <div>
-       <jh-cart-header></jh-cart-header>
-       <jh-cart-shop-list @del="del" @add="addNum" @minus="minusNum" @pCheck="singleCheck" @sCheck="shopCheckAll" :data="cartInfo"></jh-cart-shop-list>
-       <jh-cart-footer @checkAll="cartCheckAll" :data="cartInfo"></jh-cart-footer>
-   </div>
+    <div>
+        <jh-cart-header></jh-cart-header>
+        <jh-cart-shop-list @del="del" @add="addNum" @minus="minusNum" @pCheck="singleCheck" @sCheck="shopCheckAll" :data="cartInfo"></jh-cart-shop-list>
+        <jh-cart-footer @checkAll="cartCheckAll" :data="cartInfo"></jh-cart-footer>
+    </div>
 </template>
 
 <script>
+    import {mapGetters} from "vuex"
     import cartApi from "../apis/cartApi"
     import cartFooter from "../components/carts/cartFooter"
     import cartHeader from "../components/carts/cartHeader"
@@ -19,20 +20,18 @@
             "jh-cart-shop-list":cartShopList
         },
         created(){
-           this._initPageData()
+            this._initPageData()
         },
         methods:{
             _initPageData(){
-               cartApi.getCartByUserId(data=>{
-                    console.log(data)
-                    this.cartInfo = data;
-                })
+                //把从ajax中获取数据的方式改为从store中获取数据的方式
+                this.$store.dispatch("INITCART")
             },
             shopCheckAll(sid){
-               let isChecked = this.cartInfo.shops[sid].checked;
-               this.cartInfo.shops[sid].products.forEach((product,pid)=>{
+                let isChecked = this.cartInfo.shops[sid].checked;
+                this.cartInfo.shops[sid].products.forEach((product,pid)=>{
                     product.checked = isChecked
-               })
+                })
             },
             singleCheck(sid,pid){
                 console.log("pCheck",sid,pid)
@@ -69,16 +68,18 @@
                 this.cartInfo.shops[sid].products.splice(pid,1)
             }
         },
-        data(){
-            return {
-                //observer
-                cartInfo:{}
-            }
-        },
+        computed:{
+            //mapGetters,把store中的getters中的事件的结合，map到组件的
+            //computed属性上
+            //mapGetters会订阅store 的变化
+            ...mapGetters({
+                cartInfo:"GETCARTINFO"
+            })
+        } ,
         watch:{
             cartInfo:{
                 handler:function (nObj,oObj) {
-                   console.log("watch cartinfo change....")
+                    console.log("watch cartinfo change....")
                 },
                 deep:true
             }
@@ -87,5 +88,5 @@
 </script>
 
 <style scoped>
-   @import "../assets/carts.css";
+    @import "../assets/carts.css";
 </style>
